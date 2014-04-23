@@ -4,3 +4,4 @@ Agilent DMM/*
 Agilent PS/*
 Chamber Status/*
 Digital IO/*
+*.pyc
