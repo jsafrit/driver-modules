@@ -1,6 +1,6 @@
 #-------------------------------------------------------------------------------
-# Name:        module1
-# Purpose:
+# Name:        ChamberStatus.py
+# Purpose:     Interface for accessing chamber status webpage
 #
 # Author:      jlsafrit
 #
