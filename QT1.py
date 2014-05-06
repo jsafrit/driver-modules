@@ -13,8 +13,12 @@ import time
 import sys
 import os
 
+import DigitalIO
 from Packet import Packet
 from CRC16 import CRC16
+
+#from __main__ import main_dir, data_dir
+import __main__
 
 #####################################################
 # QT1 classes
@@ -77,7 +81,7 @@ class QT1_UUT:
 
         self.filename = name + '.out'
         try:
-            self.fo = open(os.path.join(main_dir,data_dir,self.filename), 'a+')
+            self.fo = fileOpen(self.filename)
         except IOError, status:
             print 'BOOM! @ %s' % self.filename
             print status
@@ -427,7 +431,7 @@ class QT1_UUT:
         r = r.replace('\r','')
 
         try:
-            fo = open(os.path.join(main_dir,data_dir,fname), 'a+')
+            fo = fileOpen(fname)
         except IOError, status:
             print 'BOOM! @ %s' % fname
             print status
@@ -462,7 +466,7 @@ class QT1_UUT:
         r = r.replace('\r','')
 
         try:
-            fo = open(os.path.join(main_dir,data_dir,fname), 'a+')
+            fo = fileOpen(fname)
         except IOError, status:
             print 'BOOM! @ %s' % fname
             print status
@@ -517,6 +521,11 @@ def getFilename(prefix=None):
     else:
         filename = 'outlog_' + filename + '.txt'
     return filename
+
+def fileOpen(filename):
+    return open(os.path.join(__main__.main_dir,
+                             __main__.data_dir,
+                             filename), 'a+')
 
 
 def main():
