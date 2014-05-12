@@ -124,6 +124,8 @@ class TempChamber:
 
     def setTemp(self,temp):
         """Check limits of request and set Temp Setpoint"""
+        if not temp:
+            return True
         if temp < lowTempLimit:
             print 'Setpoint too low. Minimum value is %d.' % lowTempLimit
             return False
@@ -136,6 +138,8 @@ class TempChamber:
 
     def setHumd(self,humd):
         """Check limits of request and set Humidity Setpoint"""
+        if not humd:
+            return True
         if humd < lowHumdLimit:
             print 'Setpoint too low. Minimum value is %d.' % lowHumdLimit
             return False
@@ -171,6 +175,7 @@ class TempChamber:
         # Check for you setpoint conditions
         if waitT or waitH:
             print 'Waiting for setpoints.',
+            cnt = 0
         while waitT or waitH:
             sleep(30)
             if waitT:
@@ -188,6 +193,13 @@ class TempChamber:
                     print 'Humdity Setpoint Met.',
                     waitH = False
             print '\b.',
+            cnt += 1
+            if cnt >= 8:
+                cnt = 0
+                print
+                self.updateStatus()
+                print 'Waiting for setpoints.',
+
             if not waitT and not waitH:
                 print
 
