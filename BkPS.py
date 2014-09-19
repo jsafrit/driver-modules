@@ -66,8 +66,9 @@ class BkPS:
         result = self.ser.read(3)
         if 'OK' not in result:
             print "Problem with command. Exiting..."
-            sys.exit(3)
-
+        #    sys.exit(3)
+        return result
+		
     def sendCmdResp(self, cmd, ln=10):
         if not self.isOpen:
             print "Serial port not open. Exiting..."
@@ -85,11 +86,11 @@ class BkPS:
 
     def off(self):
         """Turn power supply output off."""
-        self.sendCmd('SOUT1')
+        return self.sendCmd('SOUT1')
 
     def on(self):
         """Turn power supply output on."""
-        self.sendCmd('SOUT0')
+        return self.sendCmd('SOUT0')
 
     def setV(self,v):
         """Set the power supply voltage.
