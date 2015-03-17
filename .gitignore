@@ -1,8 +1,1 @@
-syntax: glob
-_waves/*
-Agilent DMM/*
-Agilent PS/*
-Chamber Status/*
-Digital IO/*
 *.pyc
-Temp Chamber/*
